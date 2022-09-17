@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process User Read/</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family:Papyrus,fantasy;
+            font-style:normal;
+            font-variant:normal;
+            font-size:20px;
+            font-weight:400;
+        }
+        .center-container {
+            text-align:center;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <h1 style="margin:50px; font-size:40px; font-weight:700;">PROCESS</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>User id:</p>
+        <p>&nbsp</p>
+        <p th:text="${user.getId()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Full name: </p>
+        <p>&nbsp</p>
+        <p th:text="${user.getFirstName()}"></p>
+        <p>&nbsp</p>
+        <p th:text="${user.getSecondName()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Username:</p>
+        <p>&nbsp</p>
+        <p th:text="${user.getUsername()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Email: &nbsp</p>
+        <p th:text="${user.getEmail()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Role:&nbsp</p>
+        <p th:text="${user.getRole()}"></p>
+    </div>
+    <div style="justify-content:center; align-items:center;">
+        <div>&nbsp</div>
+        <p>Orders:</p>
+        <tr th:each="order : ${user.orders}">
+            <td th:text="${order.getId()}"></td>
+            <td>.&nbsp</td>
+            <td th:text="${order.getCustomerFirstName()}"></td>
+            <td>&nbsp</td>
+            <td th:text="${order.getCustomerSecondName()}"></td>
+            <td>&nbsp</td>
+            <td th:text="${order.getCustomerAddress()}"></td>
+            <td>&nbsp</td>
+            <td>status:</td>
+            <td>&nbsp</td>
+            <td th:text="${order.getStatus()}"></td>
+            <td>.........</td>
+            <td th:text="${order.getPrice()}"></td>
+            <td>0&nbsp</td>
+            <td th:text="pln"></td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+            <td><a th:href="@{/user/process/read-order/{id}(id=${order.id})}">read</a></td>
+            <br>
+        </tr>
+    </div>
+    <div style="margin:50px;">
+        <a href="/user/index">Back to main page</a>
+    </div>
+</div>
+</body>
+</html>

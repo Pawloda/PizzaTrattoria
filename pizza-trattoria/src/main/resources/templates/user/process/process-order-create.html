@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Create/</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family:Papyrus,fantasy;
+            font-style:normal;
+            font-variant:normal;
+            font-size:20px;
+            font-weight:400;
+        }
+        .center-container {
+            text-align:center;
+        }
+        .cell-container {
+            display:table-cell;
+            text-align:center;
+            margin: 20px;
+        }
+        input:invalid {
+            border:2px dashed red;
+        }
+        input:valid {
+            background-color:marine;
+        }
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <h1 style="margin:50px; font-size:40px; font-weight:700;">***CREATE NEW ORDER***</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <div style="display:flex">
+            <form action="#" th:action="@{/user/process/create}" th:object="${order}" method="post">
+                <div>
+                    <div class="cell-container">
+                        <label for="customerFirstName">*Name:</label>
+                        <input type="text" th:field="*{customerFirstName}" id="customerFirstName" placeholder="Name"
+                               required="required" pattern="[A-ZĄĆĘŁÓŚŻŹa-ząćęłóśźż][a-ząćęłóśźż]*" minlength="2"
+                               maxlength="20" autofocus/>
+                    </div>
+                    <div style="display:table-cell; width: 55px;">
+                    </div>
+                    <div class="cell-container">
+                        <label for="customerSecondName">*Surname:</label>
+                        <input type="text" th:field="*{customerSecondName}" id="customerSecondName"
+                               placeholder="Surname"
+                               required="required" pattern="[A-ZĄĆĘŁÓŚŻŹa-ząćęłóśźż][a-ząćęłóśźż]*" minlength="2"
+                               maxlength="20"/>
+                    </div>
+                    <br>
+                    <div class="cell-container">
+                        <label for="customerAddress">*Address:</label>
+                        <input type="text" th:field="*{customerAddress}" id="customerAddress" placeholder="Address"
+                               required="required"/>
+                    </div>
+                    <div style="display:table-cell; width: 30px;">
+                    </div>
+                    <div class="cell-container">
+                        <label for="customerPhone">*Phone number:</label>
+                        <input type="text" th:field="*{customerPhone}" id="customerPhone" placeholder="xxxxxxxxx"
+                               required="required" maxlength="9" minlength="9" pattern="[0-9]{9}"/>
+                    </div>
+                    <br>
+                    <div class="cell-container">
+                        <label for="customerEmail">Email: </label>
+                        <input type="text" th:field="*{customerEmail}" id="customerEmail" placeholder="aaa@bb.cc"/>
+                    </div>
+                    <div style="display:table-cell; width: 65px;">
+                    </div>
+                    <div class="cell-container">
+                        <label for="customerNote">Notes</label>
+                        <textarea th:field="*{customerNote}" id="customerNote" placeholder="Any notes?"
+                                  autocorrect></textarea>
+                    </div>
+                </div>
+                <div th:each="pizza, itemStat: *{pizzas}">
+                    <br>
+                    <br>
+                    <label for="name">Name</label>
+                    <select th:field="*{pizzas[__${itemStat.index}__].name}" id="name">
+                        <option th:value="California" th:text="California"></option>
+                        <option th:value="Chicago" th:text="Chicago"></option>
+                        <option th:value="Greek" th:text="Greek"></option>
+                        <option th:value="Margherita" th:text="Margherita"></option>
+                        <option th:value="Neapolitan" th:text="Neapolitan"></option>
+                        <option th:value="Sicilian" th:text="Sicilian"></option>
+                    </select>
+                    <br>
+                    <br>
+                    <p>Extra ingredients:</p>
+                    <div style="margin-left:40px; text-align:center;">
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="cheese"/>
+                        <label th:text="cheese"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="chicken"/>
+                        <label th:text="chicken"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="corn"/>
+                        <label th:text="corn"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="ham"/>
+                        <label th:text="ham"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="jalapeno"/>
+                        <label th:text="jalapeno"></label>
+                        <br>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="mushrooms"/>
+                        <label th:text="mushrooms"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="onion"/>
+                        <label th:text="onion"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="pepperoni"/>
+                        <label th:text="pepperoni"></label>
+                        <label>&nbsp</label>
+                        <input type="checkbox" th:field="*{pizzas[__${itemStat.index}__].stringIngredients}" th:value="salami"/>
+                        <label th:text="salami"></label>
+                        <br>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Create!">
+            </form>
+        </div>
+    </div>
+    <div style="margin:20px;">
+        <a href="/user/index">Back to main page</a>
+    </div>
+</div>
+</body>
+</html>

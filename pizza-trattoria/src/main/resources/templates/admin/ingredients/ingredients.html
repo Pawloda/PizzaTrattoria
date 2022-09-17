@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredients</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family:Papyrus,fantasy;
+            font-style:normal;
+            font-variant:normal;
+            font-size:20px;
+            font-weight:400;
+        }
+        span {
+            margin:20px;
+        }
+        .center-container {
+            text-align:center;
+        }
+        .additional-container {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:30px;
+        }
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <h1 style="margin:50px; font-size:40px; font-weight:700;">INGREDIENTS</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p style="text-align:justify; width:60%;">
+            Here is the list of all ingredients. Here you can manage all of them.
+        </p>
+    </div>
+    <div class="additional-container">
+        <span><a href="/admin/ingredients/create">Create</a></span>
+    </div>
+    <div class="additional-container">
+        <div style="width:60%; text-align:left;">
+            <tr th:each="ingredient: ${ingredients}">
+                <td th:text="${ingredient.getId()}"></td>
+                <td>.&nbsp</td>
+                <td th:text="${ingredient.getName()}"></td>
+                <td>.........</td>
+                <td th:text="${ingredient.getPrice()}"></td>
+                <td>0&nbsp</td>
+                <td th:text="pln"></td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                <td><a th:href="@{/admin/ingredients/read/{id}(id=${ingredient.id})}">read</a></td>
+                <td>&nbsp&nbsp</td>
+                <td><a th:href="@{/admin/ingredients/update/{id}(id=${ingredient.id})}">update</a></td>
+                <td>&nbsp&nbsp</td>
+                <td><a th:href="@{/admin/ingredients/delete/{id}(id=${ingredient.id})}">delete</a></td>
+                <br>
+            </tr>
+        </div>
+    </div>
+    <div style="margin-top:100px;">
+        <a href="/admin/pizzas/delete-orphans">Delete ingredients without pizza</a>
+    </div>
+    <div style="margin:20px;">
+        <a href="/admin/index">Back to main index</a>
+    </div>
+</div>
+</body>
+</html>

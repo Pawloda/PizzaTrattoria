@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Order Read/</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family:Papyrus,fantasy;
+            font-style:normal;
+            font-variant:normal;
+            font-size:20px;
+            font-weight:400;
+        }
+        .center-container {
+            text-align:center;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <h1 style="margin:50px; font-size:40px; font-weight:700;">PROCESS</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Order number:</p>
+        <p>&nbsp</p>
+        <p th:text="${order.getId()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Customer: Mr/Mrs</p>
+        <p>&nbsp</p>
+        <p th:text="${order.getCustomerFirstName()}"></p>
+        <p>&nbsp</p>
+        <p th:text="${order.getCustomerSecondName()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Phone:</p>
+        <p>&nbsp</p>
+        <p th:text="${order.getCustomerPhone()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Email:</p>
+        <p>&nbsp</p>
+        <p th:text="${order.getCustomerEmail()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Address:</p>
+        <p>&nbsp</p>
+        <p th:text="${order.getCustomerAddress()}"></p>
+    </div>
+    <div style="justify-content:center; align-items:center;">
+        <div>&nbsp</div>
+        <p>Pizzas:</p>
+        <div style="display:flex; justify-content:center; align-items:center;" th:each="pizza : ${order.pizzas}">
+            <td th:text="${pizza.getName()}"></td>
+            <span th:each="stringIngredient : ${pizza.stringIngredients}">
+                <td>&nbsp+&nbsp</td>
+                <td th:text="${stringIngredient}"></td>
+            </span>
+            <td>.........</td>
+            <td th:text="${pizza.getPrice()}"></td>
+            <td>0&nbsp</td>
+            <td th:text="pln"></td>
+        </div>
+    </div>
+    <div>&nbsp</div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Full price of the order: &nbsp</p>
+        <p th:text="${order.getPrice()}"></p>
+        <p>&nbsp pln</p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Notes:&nbsp</p>
+        <p th:text="${order.getCustomerNote()}"></p>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <p>Status:&nbsp</p>
+        <p th:text="${order.getStatus()}"></p>
+    </div>
+    <div style="margin:50px;">
+        <a href="/user/process/read">Back to user details</a>
+    </div>
+</div>
+</body>
+</html>

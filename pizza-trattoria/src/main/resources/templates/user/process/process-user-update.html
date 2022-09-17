@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Users Update/</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family:Papyrus,fantasy;
+            font-style:normal;
+            font-variant:normal;
+            font-size:20px;
+            font-weight:400;
+        }
+        .center-container {
+            text-align:center;
+        }
+        .cell-container {
+            display:table-cell;
+            text-align:center;
+            margin: 20px;
+        }
+        input:invalid {
+            border:2px dashed red;
+        }
+        input:valid {
+            background-color:marine;
+        }
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <h1 style="margin:50px; font-size:40px; font-weight:700;">PROCESS</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <div style="display:flex">
+            <form action="#" th:action="@{update}" th:object="${user}" method="post">
+                <div>
+                    <div class="cell-container">
+                        <label for="firstName">*Name:</label>
+                        <input type="text" th:field="*{firstName}" id="firstName" placeholder="Name"
+                               required="required" pattern="[A-ZĄĆĘŁÓŚŻŹa-ząćęłóśźż][a-ząćęłóśźż]*" minlength="2"
+                               maxlength="20" autofocus/>
+                    </div>
+                    <div style="display:table-cell; width: 89px;">
+                    </div>
+                    <div class="cell-container">
+                        <label for="secondName">*Surname:</label>
+                        <input type="text" th:field="*{secondName}" id="secondName"
+                               placeholder="Surname"
+                               required="required" pattern="[A-ZĄĆĘŁÓŚŻŹa-ząćęłóśźż][a-ząćęłóśźż]*" minlength="2"
+                               maxlength="20"/>
+                    </div>
+                    <br>
+                    <div class="cell-container">
+                        <label for="username">*Username:</label>
+                        <input type="text" th:field="*{username}" id="username"
+                               placeholder="Username"
+                               required="required" pattern="[A-ZĄĆĘŁÓŚŻŹa-ząćęłóśźż0-9]*" minlength="4"
+                               maxlength="20"/>
+                    </div>
+                    <div style="display:table-cell; width: 50px;">
+                    </div>
+                    <div class="cell-container">
+                        <label for="password">*Password:</label>
+                        <input type="text" th:field="*{password}" id="password"
+                               placeholder="Password"
+                               required="required" pattern="[A-ZĄĆĘŁÓŚŻŹa-ząćęłóśźż0-9]*" minlength="4"
+                               maxlength="20"/>
+                    </div>
+                    <br>
+                    <div class="cell-container">
+                        <label for="email">Email: </label>
+                        <input type="text" th:field="*{email}" id="email" placeholder="aaa@bb.cc"/>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Update!">
+            </form>
+        </div>
+    </div>
+    <div style="margin:200px;">
+        <a href="/user/index">Back to main page</a>
+    </div>
+</div>
+</body>
+</html>

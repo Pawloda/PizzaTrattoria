@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders Add User/</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family:Papyrus,fantasy;
+            font-style:normal;
+            font-variant:normal;
+            font-size:20px;
+            font-weight:400;
+        }
+        .center-container {
+            text-align:center;
+        }
+        input:invalid {
+            border:2px dashed red;
+        }
+        input:valid {
+            background-color:marine;
+        }
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <h1 style="margin:50px; font-size:40px; font-weight:700;">ORDERS</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <div style="display:table">
+            <form action="add-user" method="post">
+                <p>Set ID of user</p>
+                <br>
+                <input type="text" name="userId" placeholder="userId" required="required" pattern="[0-9]*"/>
+                <input type="submit" value="Add user!">
+            </form>
+        </div>
+    </div>
+    <div style="margin:200px;">
+        <a href="/admin/orders">Back to list</a>
+    </div>
+</div>
+</body>
+</html>
